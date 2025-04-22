@@ -1,956 +1,680 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Luxury Watch - Product Details</title>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Luxury Watch Collection</title>
     <script src="https://cdn.tailwindcss.com/3.4.16"></script>
-    <script>
-      tailwind.config = {
-        theme: {
-          extend: {
-            colors: { primary: "#1a365d", secondary: "#4a5568" },
-            borderRadius: {
-              none: "0px",
-              sm: "4px",
-              DEFAULT: "8px",
-              md: "12px",
-              lg: "16px",
-              xl: "20px",
-              "2xl": "24px",
-              "3xl": "32px",
-              full: "9999px",
-              button: "8px",
-            },
-          },
-        },
-      };
-    </script>
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap"
-      rel="stylesheet"
-    />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
-      rel="stylesheet"
-    />
-    <link
-      href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css"
-      rel="stylesheet"
-    />
+    <script>tailwind.config={theme:{extend:{colors:{primary:'#3b82f6',secondary:'#64748b'},borderRadius:{'none':'0px','sm':'4px',DEFAULT:'8px','md':'12px','lg':'16px','xl':'20px','2xl':'24px','3xl':'32px','full':'9999px','button':'8px'}}}}</script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css" rel="stylesheet">
     <style>
-      :where([class^="ri-"])::before { content: "\f3c2"; }
-      body {
-          font-family: 'Inter', sans-serif;
-      }
-      input::-webkit-outer-spin-button,
-      input::-webkit-inner-spin-button {
-          -webkit-appearance: none;
-          margin: 0;
-      }
-      input[type=number] {
-          -moz-appearance: textfield;
-      }
-      .custom-checkbox {
-          position: relative;
-          cursor: pointer;
-      }
-      .custom-checkbox input {
-          position: absolute;
-          opacity: 0;
-          cursor: pointer;
-      }
-      .checkmark {
-          position: absolute;
-          top: 0;
-          left: 0;
-          height: 20px;
-          width: 20px;
-          background-color: #fff;
-          border: 1px solid #d1d5db;
-          border-radius: 4px;
-      }
-      .custom-checkbox:hover input ~ .checkmark {
-          background-color: #f3f4f6;
-      }
-      .custom-checkbox input:checked ~ .checkmark {
-          background-color: #1a365d;
-          border-color: #1a365d;
-      }
-      .checkmark:after {
-          content: "";
-          position: absolute;
-          display: none;
-      }
-      .custom-checkbox input:checked ~ .checkmark:after {
-          display: block;
-      }
-      .custom-checkbox .checkmark:after {
-          left: 7px;
-          top: 3px;
-          width: 6px;
-          height: 11px;
-          border: solid white;
-          border-width: 0 2px 2px 0;
-          transform: rotate(45deg);
-      }
-      .custom-radio {
-          position: relative;
-          cursor: pointer;
-      }
-      .custom-radio input {
-          position: absolute;
-          opacity: 0;
-          cursor: pointer;
-      }
-      .radio-mark {
-          position: absolute;
-          top: 0;
-          left: 0;
-          height: 20px;
-          width: 20px;
-          background-color: #fff;
-          border: 1px solid #d1d5db;
-          border-radius: 50%;
-      }
-      .custom-radio:hover input ~ .radio-mark {
-          background-color: #f3f4f6;
-      }
-      .custom-radio input:checked ~ .radio-mark {
-          background-color: #fff;
-          border-color: #1a365d;
-      }
-      .radio-mark:after {
-          content: "";
-          position: absolute;
-          display: none;
-      }
-      .custom-radio input:checked ~ .radio-mark:after {
-          display: block;
-      }
-      .custom-radio .radio-mark:after {
-          top: 4px;
-          left: 4px;
-          width: 10px;
-          height: 10px;
-          border-radius: 50%;
-          background: #1a365d;
-      }
-      .switch {
-          position: relative;
-          display: inline-block;
-          width: 44px;
-          height: 24px;
-      }
-      .switch input {
-          opacity: 0;
-          width: 0;
-          height: 0;
-      }
-      .slider {
-          position: absolute;
-          cursor: pointer;
-          top: 0;
-          left: 0;
-          right: 0;
-          bottom: 0;
-          background-color: #e5e7eb;
-          transition: .4s;
-          border-radius: 34px;
-      }
-      .slider:before {
-          position: absolute;
-          content: "";
-          height: 18px;
-          width: 18px;
-          left: 3px;
-          bottom: 3px;
-          background-color: white;
-          transition: .4s;
-          border-radius: 50%;
-      }
-      input:checked + .slider {
-          background-color: #1a365d;
-      }
-      input:checked + .slider:before {
-          transform: translateX(20px);
-      }
-      .range-slider {
-          -webkit-appearance: none;
-          width: 100%;
-          height: 4px;
-          border-radius: 5px;
-          background: #e5e7eb;
-          outline: none;
-      }
-      .range-slider::-webkit-slider-thumb {
-          -webkit-appearance: none;
-          appearance: none;
-          width: 18px;
-          height: 18px;
-          border-radius: 50%;
-          background: #1a365d;
-          cursor: pointer;
-      }
-      .range-slider::-moz-range-thumb {
-          width: 18px;
-          height: 18px;
-          border-radius: 50%;
-          background: #1a365d;
-          cursor: pointer;
-          border: none;
-      }
-      .color-option {
-          width: 24px;
-          height: 24px;
-          border-radius: 50%;
-          cursor: pointer;
-          position: relative;
-      }
-      .color-option.selected:after {
-          content: "";
-          position: absolute;
-          top: -4px;
-          left: -4px;
-          right: -4px;
-          bottom: -4px;
-          border: 2px solid #1a365d;
-          border-radius: 50%;
-      }
-      .watch-image-container {
-          height: 500px;
-          overflow: hidden;
-          position: relative;
-      }
-      .thumbnail {
-          cursor: pointer;
-          opacity: 0.6;
-          transition: opacity 0.3s;
-      }
-      .thumbnail.active {
-          opacity: 1;
-          border: 2px solid #1a365d;
-      }
-      .zoom-overlay {
-          position: absolute;
-          top: 0;
-          left: 0;
-          width: 100%;
-          height: 100%;
-          background: rgba(255, 255, 255, 0.8);
-          display: none;
-          justify-content: center;
-          align-items: center;
-          z-index: 10;
-      }
-      .zoomed-image {
-          max-width: 90%;
-          max-height: 90%;
-          object-fit: contain;
-      }
+        :where([class^="ri-"])::before { content: "\f3c2"; }
+        body {
+            font-family: 'Montserrat', sans-serif;
+            color: #1f2937;
+        }
+        input::-webkit-outer-spin-button,
+        input::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+        input[type=number] {
+            -moz-appearance: textfield;
+        }
+        .custom-radio input[type="radio"] {
+            display: none;
+        }
+        .custom-radio input[type="radio"] + label {
+            position: relative;
+            padding-left: 28px;
+            cursor: pointer;
+            display: inline-block;
+            line-height: 20px;
+        }
+        .custom-radio input[type="radio"] + label:before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 20px;
+            height: 20px;
+            border: 2px solid #d1d5db;
+            border-radius: 50%;
+            background: #fff;
+        }
+        .custom-radio input[type="radio"]:checked + label:after {
+            content: '';
+            position: absolute;
+            left: 5px;
+            top: 5px;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: #3b82f6;
+        }
+        .custom-checkbox input[type="checkbox"] {
+            display: none;
+        }
+        .custom-checkbox input[type="checkbox"] + label {
+            position: relative;
+            padding-left: 28px;
+            cursor: pointer;
+            display: inline-block;
+            line-height: 20px;
+        }
+        .custom-checkbox input[type="checkbox"] + label:before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 20px;
+            height: 20px;
+            border: 2px solid #d1d5db;
+            border-radius: 4px;
+            background: #fff;
+        }
+        .custom-checkbox input[type="checkbox"]:checked + label:after {
+            content: '';
+            position: absolute;
+            left: 7px;
+            top: 3px;
+            width: 6px;
+            height: 12px;
+            border: solid #3b82f6;
+            border-width: 0 2px 2px 0;
+            transform: rotate(45deg);
+        }
+        .custom-switch {
+            position: relative;
+            display: inline-block;
+            width: 50px;
+            height: 24px;
+        }
+        .custom-switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #e5e7eb;
+            transition: .4s;
+            border-radius: 24px;
+        }
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 18px;
+            width: 18px;
+            left: 3px;
+            bottom: 3px;
+            background-color: white;
+            transition: .4s;
+            border-radius: 50%;
+        }
+        input:checked + .slider {
+            background-color: #3b82f6;
+        }
+        input:checked + .slider:before {
+            transform: translateX(26px);
+        }
+        .image-slider {
+            scroll-behavior: smooth;
+        }
+        .image-slider::-webkit-scrollbar {
+            display: none;
+        }
     </style>
-  </head>
-  <body class="bg-white">
-    <!-- Header -->
-    <header class="bg-white shadow-sm py-4 sticky top-0 z-50">
-      <div class="container mx-auto px-4 flex justify-between items-center">
-        <a href="#" class="text-2xl font-['Pacifico'] text-primary">logo</a>
-        <nav class="hidden md:flex space-x-8">
-          <a href="#" class="text-gray-800 hover:text-primary font-medium"
-            >Home</a
-          >
-          <a href="#" class="text-gray-800 hover:text-primary font-medium"
-            >Collections</a
-          >
-          <a href="#" class="text-primary font-medium border-b-2 border-primary"
-            >Shop</a
-          >
-          <a href="#" class="text-gray-800 hover:text-primary font-medium"
-            >About</a
-          >
-          <a
-            href="#contact"
-            class="text-gray-800 hover:text-primary font-medium"
-            >Contact</a
-          >
-        </nav>
-        <div class="flex items-center space-x-4">
-          <button
-            class="w-10 h-10 flex items-center justify-center text-gray-700 hover:text-primary"
-          >
-            <i class="ri-search-line ri-xl"></i>
-          </button>
-          <button
-            class="w-10 h-10 flex items-center justify-center text-gray-700 hover:text-primary"
-          >
-            <i class="ri-user-line ri-xl"></i>
-          </button>
-          <button
-            class="w-10 h-10 flex items-center justify-center text-gray-700 hover:text-primary relative"
-          >
-            <i class="ri-shopping-cart-line ri-xl"></i>
-            <span
-              class="absolute -top-1 -right-1 bg-primary text-white text-xs w-5 h-5 flex items-center justify-center rounded-full"
-              >0</span
-            >
-          </button>
-          <button
-            class="md:hidden w-10 h-10 flex items-center justify-center text-gray-700"
-          >
-            <i class="ri-menu-line ri-xl"></i>
-          </button>
+</head>
+<body class="bg-white">
+    <header class="w-full bg-white shadow-sm fixed top-0 left-0 z-50">
+        <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+            <a href="#" class="text-2xl font-['Pacifico'] text-primary">logo</a>
+            <nav class="hidden md:flex space-x-8">
+                <a href="#" class="text-primary font-medium">Home</a>
+                <a href="#" class="text-gray-600 hover:text-primary transition-colors">Collection</a>
+                <a href="#" class="text-gray-600 hover:text-primary transition-colors">About</a>
+                <a href="#contact" class="text-gray-600 hover:text-primary transition-colors">Contact</a>
+            </nav>
+            <div class="flex items-center space-x-4">
+                <div class="w-10 h-10 flex items-center justify-center text-gray-600 hover:text-primary cursor-pointer">
+                    <i class="ri-search-line ri-lg"></i>
+                </div>
+                <div class="w-10 h-10 flex items-center justify-center text-gray-600 hover:text-primary cursor-pointer">
+                    <i class="ri-shopping-cart-line ri-lg"></i>
+                </div>
+                <div class="md:hidden w-10 h-10 flex items-center justify-center text-gray-600 hover:text-primary cursor-pointer">
+                    <i class="ri-menu-line ri-lg"></i>
+                </div>
+            </div>
         </div>
-      </div>
     </header>
 
-    <!-- Main Content -->
-    <main class="container mx-auto px-4 py-8">
-      <div class="flex flex-col md:flex-row gap-8">
-        <!-- Product Images Section -->
-        <div class="md:w-1/2">
-          <div
-            class="watch-image-container bg-gray-50 rounded-lg mb-4 flex items-center justify-center"
-          >
-            <img
-              id="mainImage"
-              src="https://readdy.ai/api/search-image?query=luxury%20watch%20with%20silver%20case%20and%20black%20leather%20strap%20on%20white%20background%2C%20professional%20product%20photography%20with%20soft%20shadows%2C%20detailed%20craftsmanship%2C%20elegant%20timepiece%2C%20minimalist%20setting%2C%20high-end%20watch%20photography&width=800&height=800&seq=1&orientation=squarish"
-              alt="Luxury Watch"
-              class="object-contain h-full"
-            />
-          </div>
-          <div class="flex space-x-3 overflow-x-auto pb-2">
-            <div
-              class="thumbnail active w-20 h-20 rounded-md overflow-hidden flex-shrink-0"
-            >
-              <img
-                src="https://readdy.ai/api/search-image?query=luxury%20watch%20with%20silver%20case%20and%20black%20leather%20strap%20on%20white%20background%2C%20professional%20product%20photography%20with%20soft%20shadows%2C%20detailed%20craftsmanship%2C%20elegant%20timepiece%2C%20minimalist%20setting%2C%20high-end%20watch%20photography&width=100&height=100&seq=1&orientation=squarish"
-                alt="Watch Thumbnail 1"
-                class="w-full h-full object-cover"
-              />
+    <main class="pt-20">
+        <div class="container mx-auto px-4 py-8">
+            <div class="flex flex-col lg:flex-row gap-8">
+                <!-- Product Images -->
+                <div class="lg:w-3/5">
+                    <div class="relative overflow-hidden rounded-lg shadow-md bg-white">
+                        <img id="main-image" src="https://readdy.ai/api/search-image?query=Luxury%20chronograph%20watch%20with%20silver%20stainless%20steel%20case%20and%20black%20leather%20strap%20against%20a%20clean%20white%20background%2C%20professional%20product%20photography%20with%20soft%20shadows%2C%20high-end%20timepiece%20with%20detailed%20watch%20face%20showing%20chronograph%20subdials%2C%20high%20resolution%2C%20studio%20lighting&width=800&height=800&seq=1&orientation=squarish" alt="Chronos Precision Watch" class="w-full h-[500px] object-cover object-top">
+                        <div class="absolute top-4 right-4 w-10 h-10 flex items-center justify-center bg-white/80 backdrop-blur-sm rounded-full shadow-sm cursor-pointer hover:bg-white transition-colors">
+                            <i class="ri-zoom-in-line ri-lg text-gray-700"></i>
+                        </div>
+                    </div>
+                    
+                    <div class="mt-4 overflow-x-auto image-slider flex space-x-4 pb-2">
+                        <div class="w-24 h-24 flex-shrink-0 rounded cursor-pointer border-2 border-primary">
+                            <img src="https://readdy.ai/api/search-image?query=Luxury%20chronograph%20watch%20with%20silver%20stainless%20steel%20case%20and%20black%20leather%20strap%20against%20a%20clean%20white%20background%2C%20professional%20product%20photography%20with%20soft%20shadows%2C%20high-end%20timepiece%20with%20detailed%20watch%20face%20showing%20chronograph%20subdials%2C%20high%20resolution%2C%20studio%20lighting&width=200&height=200&seq=1&orientation=squarish" alt="Watch front view" class="w-full h-full object-cover object-top rounded">
+                        </div>
+                        <div class="w-24 h-24 flex-shrink-0 rounded cursor-pointer border-2 border-transparent hover:border-gray-300">
+                            <img src="https://readdy.ai/api/search-image?query=Luxury%20chronograph%20watch%20side%20view%20showing%20crown%20and%20buttons%2C%20silver%20stainless%20steel%20case%20with%20black%20leather%20strap%20against%20clean%20white%20background%2C%20professional%20product%20photography%20with%20soft%20shadows%2C%20high-end%20timepiece%20detailed%20craftsmanship%2C%20high%20resolution%2C%20studio%20lighting&width=200&height=200&seq=2&orientation=squarish" alt="Watch side view" class="w-full h-full object-cover object-top rounded">
+                        </div>
+                        <div class="w-24 h-24 flex-shrink-0 rounded cursor-pointer border-2 border-transparent hover:border-gray-300">
+                            <img src="https://readdy.ai/api/search-image?query=Luxury%20chronograph%20watch%20close-up%20of%20watch%20face%20showing%20intricate%20dial%20details%2C%20silver%20stainless%20steel%20case%20against%20clean%20white%20background%2C%20professional%20product%20photography%20with%20soft%20shadows%2C%20high-end%20timepiece%20with%20chronograph%20subdials%20and%20date%20window%2C%20high%20resolution%2C%20studio%20lighting&width=200&height=200&seq=3&orientation=squarish" alt="Watch face close-up" class="w-full h-full object-cover object-top rounded">
+                        </div>
+                        <div class="w-24 h-24 flex-shrink-0 rounded cursor-pointer border-2 border-transparent hover:border-gray-300">
+                            <img src="https://readdy.ai/api/search-image?query=Luxury%20chronograph%20watch%20back%20case%20view%20showing%20engraved%20details%2C%20silver%20stainless%20steel%20against%20clean%20white%20background%2C%20professional%20product%20photography%20with%20soft%20shadows%2C%20high-end%20timepiece%20craftsmanship%20details%2C%20high%20resolution%2C%20studio%20lighting&width=200&height=200&seq=4&orientation=squarish" alt="Watch back view" class="w-full h-full object-cover object-top rounded">
+                        </div>
+                        <div class="w-24 h-24 flex-shrink-0 rounded cursor-pointer border-2 border-transparent hover:border-gray-300">
+                            <img src="https://readdy.ai/api/search-image?query=Luxury%20chronograph%20watch%20with%20brown%20leather%20strap%20variant%2C%20silver%20stainless%20steel%20case%20against%20clean%20white%20background%2C%20professional%20product%20photography%20with%20soft%20shadows%2C%20high-end%20timepiece%20alternative%20style%2C%20high%20resolution%2C%20studio%20lighting&width=200&height=200&seq=5&orientation=squarish" alt="Watch with brown strap" class="w-full h-full object-cover object-top rounded">
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Product Info -->
+                <div class="lg:w-2/5">
+                    <h1 class="text-3xl font-bold mb-2">Chronos Precision Automatic</h1>
+                    <div class="flex items-center mb-4">
+                        <div class="flex text-yellow-400">
+                            <i class="ri-star-fill"></i>
+                            <i class="ri-star-fill"></i>
+                            <i class="ri-star-fill"></i>
+                            <i class="ri-star-fill"></i>
+                            <i class="ri-star-half-fill"></i>
+                        </div>
+                        <span class="text-gray-500 ml-2">4.8 (124 reviews)</span>
+                    </div>
+                    
+                    <div class="mb-6">
+                        <span class="text-3xl font-bold text-gray-900">$1,299.00</span>
+                        <span class="ml-2 text-sm text-gray-500 line-through">$1,499.00</span>
+                        <span class="ml-2 text-sm bg-red-100 text-red-600 px-2 py-1 rounded">Save 13%</span>
+                    </div>
+                    
+                    <p class="text-gray-600 mb-6">The Chronos Precision Automatic combines timeless elegance with modern precision. Featuring a Swiss automatic movement, sapphire crystal, and 100m water resistance, this watch is the perfect companion for both formal occasions and everyday wear.</p>
+                    
+                    <div class="mb-6">
+                        <h3 class="text-lg font-medium mb-3">Case Color</h3>
+                        <div class="flex space-x-3">
+                            <div class="custom-radio">
+                                <input type="radio" id="silver" name="case-color" checked>
+                                <label for="silver">Silver</label>
+                            </div>
+                            <div class="custom-radio">
+                                <input type="radio" id="gold" name="case-color">
+                                <label for="gold">Gold</label>
+                            </div>
+                            <div class="custom-radio">
+                                <input type="radio" id="rose-gold" name="case-color">
+                                <label for="rose-gold">Rose Gold</label>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="mb-6">
+                        <h3 class="text-lg font-medium mb-3">Strap Material</h3>
+                        <div class="flex space-x-3">
+                            <div class="custom-radio">
+                                <input type="radio" id="leather" name="strap-material" checked>
+                                <label for="leather">Leather</label>
+                            </div>
+                            <div class="custom-radio">
+                                <input type="radio" id="metal" name="strap-material">
+                                <label for="metal">Metal</label>
+                            </div>
+                            <div class="custom-radio">
+                                <input type="radio" id="rubber" name="strap-material">
+                                <label for="rubber">Rubber</label>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="mb-6">
+                        <h3 class="text-lg font-medium mb-3">Strap Color</h3>
+                        <div class="flex space-x-4">
+                            <div class="w-8 h-8 rounded-full bg-black border-2 border-gray-300 cursor-pointer hover:border-primary"></div>
+                            <div class="w-8 h-8 rounded-full bg-[#654321] border-2 border-gray-300 cursor-pointer hover:border-primary"></div>
+                            <div class="w-8 h-8 rounded-full bg-[#1a3c5b] border-2 border-gray-300 cursor-pointer hover:border-primary"></div>
+                            <div class="w-8 h-8 rounded-full bg-[#8B4513] border-2 border-gray-300 cursor-pointer hover:border-primary"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="mb-6">
+                        <h3 class="text-lg font-medium mb-3">Quantity</h3>
+                        <div class="flex items-center">
+                            <button class="w-10 h-10 flex items-center justify-center bg-gray-100 rounded-l-button border border-gray-300 text-gray-600 hover:bg-gray-200 whitespace-nowrap !rounded-button">
+                                <i class="ri-subtract-line"></i>
+                            </button>
+                            <input type="number" value="1" min="1" class="w-16 h-10 border-t border-b border-gray-300 text-center outline-none">
+                            <button class="w-10 h-10 flex items-center justify-center bg-gray-100 rounded-r-button border border-gray-300 text-gray-600 hover:bg-gray-200 whitespace-nowrap !rounded-button">
+                                <i class="ri-add-line"></i>
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div class="flex flex-col sm:flex-row gap-4">
+                        <button class="px-8 py-3 bg-primary text-white font-medium rounded-button hover:bg-blue-600 transition-colors flex items-center justify-center whitespace-nowrap !rounded-button">
+                            <i class="ri-shopping-cart-line mr-2"></i>
+                            Add to Cart
+                        </button>
+                        <button class="px-8 py-3 bg-white text-primary font-medium border border-primary rounded-button hover:bg-blue-50 transition-colors flex items-center justify-center whitespace-nowrap !rounded-button">
+                            <i class="ri-heart-line mr-2"></i>
+                            Wishlist
+                        </button>
+                    </div>
+                </div>
             </div>
-            <div
-              class="thumbnail w-20 h-20 rounded-md overflow-hidden flex-shrink-0"
-            >
-              <img
-                src="https://readdy.ai/api/search-image?query=luxury%20watch%20with%20silver%20case%20and%20black%20leather%20strap%20side%20view%20on%20white%20background%2C%20professional%20product%20photography%20with%20soft%20shadows%2C%20detailed%20craftsmanship%2C%20elegant%20timepiece%2C%20minimalist%20setting%2C%20high-end%20watch%20photography&width=100&height=100&seq=2&orientation=squarish"
-                alt="Watch Thumbnail 2"
-                class="w-full h-full object-cover"
-              />
+            
+            <!-- Product Details Tabs -->
+            <div class="mt-16">
+                <div class="border-b border-gray-200">
+                    <div class="flex overflow-x-auto">
+                        <button class="px-6 py-3 text-primary border-b-2 border-primary font-medium whitespace-nowrap">Specifications</button>
+                        <button class="px-6 py-3 text-gray-500 hover:text-gray-700 whitespace-nowrap">Features</button>
+                        <button class="px-6 py-3 text-gray-500 hover:text-gray-700 whitespace-nowrap">Reviews</button>
+                        <button class="px-6 py-3 text-gray-500 hover:text-gray-700 whitespace-nowrap">Shipping</button>
+                    </div>
+                </div>
+                
+                <div class="py-8">
+                    <div class="grid md:grid-cols-2 gap-8">
+                        <div>
+                            <h3 class="text-xl font-semibold mb-4">Technical Specifications</h3>
+                            <div class="space-y-4">
+                                <div class="flex border-b border-gray-100 pb-3">
+                                    <span class="w-1/2 text-gray-500">Movement</span>
+                                    <span class="w-1/2">Swiss Automatic (ETA 2824-2)</span>
+                                </div>
+                                <div class="flex border-b border-gray-100 pb-3">
+                                    <span class="w-1/2 text-gray-500">Case Material</span>
+                                    <span class="w-1/2">316L Stainless Steel</span>
+                                </div>
+                                <div class="flex border-b border-gray-100 pb-3">
+                                    <span class="w-1/2 text-gray-500">Case Diameter</span>
+                                    <span class="w-1/2">42mm</span>
+                                </div>
+                                <div class="flex border-b border-gray-100 pb-3">
+                                    <span class="w-1/2 text-gray-500">Case Thickness</span>
+                                    <span class="w-1/2">11.5mm</span>
+                                </div>
+                                <div class="flex border-b border-gray-100 pb-3">
+                                    <span class="w-1/2 text-gray-500">Crystal</span>
+                                    <span class="w-1/2">Sapphire with Anti-Reflective Coating</span>
+                                </div>
+                                <div class="flex border-b border-gray-100 pb-3">
+                                    <span class="w-1/2 text-gray-500">Water Resistance</span>
+                                    <span class="w-1/2">100m (330ft)</span>
+                                </div>
+                                <div class="flex border-b border-gray-100 pb-3">
+                                    <span class="w-1/2 text-gray-500">Strap Width</span>
+                                    <span class="w-1/2">20mm</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <h3 class="text-xl font-semibold mb-4">Additional Information</h3>
+                            <div class="space-y-4">
+                                <div class="flex border-b border-gray-100 pb-3">
+                                    <span class="w-1/2 text-gray-500">Power Reserve</span>
+                                    <span class="w-1/2">38 Hours</span>
+                                </div>
+                                <div class="flex border-b border-gray-100 pb-3">
+                                    <span class="w-1/2 text-gray-500">Functions</span>
+                                    <span class="w-1/2">Hours, Minutes, Seconds, Date</span>
+                                </div>
+                                <div class="flex border-b border-gray-100 pb-3">
+                                    <span class="w-1/2 text-gray-500">Dial Color</span>
+                                    <span class="w-1/2">Black</span>
+                                </div>
+                                <div class="flex border-b border-gray-100 pb-3">
+                                    <span class="w-1/2 text-gray-500">Luminescence</span>
+                                    <span class="w-1/2">Super-LumiNova on Hands and Indices</span>
+                                </div>
+                                <div class="flex border-b border-gray-100 pb-3">
+                                    <span class="w-1/2 text-gray-500">Clasp Type</span>
+                                    <span class="w-1/2">Deployant with Push Buttons</span>
+                                </div>
+                                <div class="flex border-b border-gray-100 pb-3">
+                                    <span class="w-1/2 text-gray-500">Warranty</span>
+                                    <span class="w-1/2">2 Years International</span>
+                                </div>
+                                <div class="flex border-b border-gray-100 pb-3">
+                                    <span class="w-1/2 text-gray-500">Country of Origin</span>
+                                    <span class="w-1/2">Switzerland</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div
-              class="thumbnail w-20 h-20 rounded-md overflow-hidden flex-shrink-0"
-            >
-              <img
-                src="https://readdy.ai/api/search-image?query=luxury%20watch%20with%20silver%20case%20and%20black%20leather%20strap%20close-up%20of%20dial%20on%20white%20background%2C%20professional%20product%20photography%20with%20soft%20shadows%2C%20detailed%20craftsmanship%2C%20elegant%20timepiece%2C%20minimalist%20setting%2C%20high-end%20watch%20photography&width=100&height=100&seq=3&orientation=squarish"
-                alt="Watch Thumbnail 3"
-                class="w-full h-full object-cover"
-              />
+            
+            <!-- Related Products -->
+            <div class="mt-16">
+                <h2 class="text-2xl font-bold mb-6">You May Also Like</h2>
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                    <div class="bg-white rounded-lg shadow-sm overflow-hidden hover:shadow-md transition-shadow">
+                        <div class="h-64 overflow-hidden">
+                            <img src="https://readdy.ai/api/search-image?query=Luxury%20dive%20watch%20with%20blue%20dial%20and%20stainless%20steel%20bracelet%20against%20clean%20white%20background%2C%20professional%20product%20photography%20with%20soft%20shadows%2C%20high-end%20timepiece%20with%20rotating%20bezel%2C%20high%20resolution%2C%20studio%20lighting&width=400&height=400&seq=6&orientation=squarish" alt="Dive Watch" class="w-full h-full object-cover object-top hover:scale-105 transition-transform duration-500">
+                        </div>
+                        <div class="p-4">
+                            <h3 class="font-medium">Nautilus Diver Pro</h3>
+                            <div class="flex justify-between items-center mt-2">
+                                <span class="text-gray-900 font-bold">$899.00</span>
+                                <div class="flex text-yellow-400 text-sm">
+                                    <i class="ri-star-fill"></i>
+                                    <i class="ri-star-fill"></i>
+                                    <i class="ri-star-fill"></i>
+                                    <i class="ri-star-fill"></i>
+                                    <i class="ri-star-fill"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-white rounded-lg shadow-sm overflow-hidden hover:shadow-md transition-shadow">
+                        <div class="h-64 overflow-hidden">
+                            <img src="https://readdy.ai/api/search-image?query=Luxury%20minimalist%20watch%20with%20white%20dial%20and%20mesh%20bracelet%20against%20clean%20white%20background%2C%20professional%20product%20photography%20with%20soft%20shadows%2C%20high-end%20timepiece%20with%20simple%20elegant%20design%2C%20high%20resolution%2C%20studio%20lighting&width=400&height=400&seq=7&orientation=squarish" alt="Minimalist Watch" class="w-full h-full object-cover object-top hover:scale-105 transition-transform duration-500">
+                        </div>
+                        <div class="p-4">
+                            <h3 class="font-medium">Minimalist Classic</h3>
+                            <div class="flex justify-between items-center mt-2">
+                                <span class="text-gray-900 font-bold">$649.00</span>
+                                <div class="flex text-yellow-400 text-sm">
+                                    <i class="ri-star-fill"></i>
+                                    <i class="ri-star-fill"></i>
+                                    <i class="ri-star-fill"></i>
+                                    <i class="ri-star-fill"></i>
+                                    <i class="ri-star-line"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-white rounded-lg shadow-sm overflow-hidden hover:shadow-md transition-shadow">
+                        <div class="h-64 overflow-hidden">
+                            <img src="https://readdy.ai/api/search-image?query=Luxury%20chronograph%20watch%20with%20black%20dial%20and%20rubber%20strap%20against%20clean%20white%20background%2C%20professional%20product%20photography%20with%20soft%20shadows%2C%20high-end%20sports%20timepiece%20with%20multiple%20subdials%2C%20high%20resolution%2C%20studio%20lighting&width=400&height=400&seq=8&orientation=squarish" alt="Sport Chronograph" class="w-full h-full object-cover object-top hover:scale-105 transition-transform duration-500">
+                        </div>
+                        <div class="p-4">
+                            <h3 class="font-medium">Velocity Sport Chrono</h3>
+                            <div class="flex justify-between items-center mt-2">
+                                <span class="text-gray-900 font-bold">$1,199.00</span>
+                                <div class="flex text-yellow-400 text-sm">
+                                    <i class="ri-star-fill"></i>
+                                    <i class="ri-star-fill"></i>
+                                    <i class="ri-star-fill"></i>
+                                    <i class="ri-star-fill"></i>
+                                    <i class="ri-star-half-fill"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-white rounded-lg shadow-sm overflow-hidden hover:shadow-md transition-shadow">
+                        <div class="h-64 overflow-hidden">
+                            <img src="https://readdy.ai/api/search-image?query=Luxury%20dress%20watch%20with%20rose%20gold%20case%20and%20brown%20leather%20strap%20against%20clean%20white%20background%2C%20professional%20product%20photography%20with%20soft%20shadows%2C%20high-end%20elegant%20timepiece%20with%20roman%20numerals%2C%20high%20resolution%2C%20studio%20lighting&width=400&height=400&seq=9&orientation=squarish" alt="Dress Watch" class="w-full h-full object-cover object-top hover:scale-105 transition-transform duration-500">
+                        </div>
+                        <div class="p-4">
+                            <h3 class="font-medium">Heritage Rose Gold</h3>
+                            <div class="flex justify-between items-center mt-2">
+                                <span class="text-gray-900 font-bold">$1,499.00</span>
+                                <div class="flex text-yellow-400 text-sm">
+                                    <i class="ri-star-fill"></i>
+                                    <i class="ri-star-fill"></i>
+                                    <i class="ri-star-fill"></i>
+                                    <i class="ri-star-fill"></i>
+                                    <i class="ri-star-line"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div
-              class="thumbnail w-20 h-20 rounded-md overflow-hidden flex-shrink-0"
-            >
-              <img
-                src="https://readdy.ai/api/search-image?query=luxury%20watch%20with%20silver%20case%20and%20black%20leather%20strap%20wrist%20shot%20on%20white%20background%2C%20professional%20product%20photography%20with%20soft%20shadows%2C%20detailed%20craftsmanship%2C%20elegant%20timepiece%2C%20minimalist%20setting%2C%20high-end%20watch%20photography&width=100&height=100&seq=4&orientation=squarish"
-                alt="Watch Thumbnail 4"
-                class="w-full h-full object-cover"
-              />
+            
+            <!-- Contact Section -->
+            <div id="contact" class="mt-20 bg-gray-50 rounded-lg p-8">
+                <div class="max-w-3xl mx-auto">
+                    <h2 class="text-2xl font-bold text-center mb-8">Contact Us</h2>
+                    
+                    <div class="grid md:grid-cols-2 gap-8">
+                        <div>
+                            <form id="contact-form" class="space-y-4">
+                                <div>
+                                    <label for="name" class="block text-sm font-medium text-gray-700 mb-1">Your Name</label>
+                                    <input type="text" id="name" name="name" class="w-full px-4 py-2 border border-gray-300 rounded focus:ring-2 focus:ring-primary focus:border-primary outline-none" required>
+                                </div>
+                                
+                                <div>
+                                    <label for="email" class="block text-sm font-medium text-gray-700 mb-1">Your Email</label>
+                                    <input type="email" id="email" name="email" class="w-full px-4 py-2 border border-gray-300 rounded focus:ring-2 focus:ring-primary focus:border-primary outline-none" required>
+                                </div>
+                                
+                                <div>
+                                    <label for="subject" class="block text-sm font-medium text-gray-700 mb-1">Subject</label>
+                                    <input type="text" id="subject" name="subject" class="w-full px-4 py-2 border border-gray-300 rounded focus:ring-2 focus:ring-primary focus:border-primary outline-none" required>
+                                </div>
+                                
+                                <div>
+                                    <label for="message" class="block text-sm font-medium text-gray-700 mb-1">Message</label>
+                                    <textarea id="message" name="message" rows="4" class="w-full px-4 py-2 border border-gray-300 rounded focus:ring-2 focus:ring-primary focus:border-primary outline-none" required></textarea>
+                                </div>
+                                
+                                <div class="flex items-center">
+                                    <div class="custom-checkbox">
+                                        <input type="checkbox" id="privacy" name="privacy" required>
+                                        <label for="privacy" class="text-sm text-gray-600">I agree to the privacy policy</label>
+                                    </div>
+                                </div>
+                                
+                                <button type="submit" class="w-full py-3 bg-primary text-white font-medium rounded-button hover:bg-blue-600 transition-colors whitespace-nowrap !rounded-button">
+                                    Send Message
+                                </button>
+                            </form>
+                            
+                            <div id="success-message" class="hidden mt-4 p-4 bg-green-100 text-green-700 rounded">
+                                Thank you for your message! We'll get back to you soon.
+                            </div>
+                        </div>
+                        
+                        <div class="flex flex-col justify-center">
+                            <div class="mb-8">
+                                <h3 class="text-lg font-medium mb-4">Direct Contact</h3>
+                                <div class="space-y-4">
+                                    <div class="flex items-center">
+                                        <div class="w-10 h-10 flex items-center justify-center bg-primary/10 text-primary rounded-full mr-3">
+                                            <i class="ri-phone-line"></i>
+                                        </div>
+                                        <a href="tel:9360012972" class="text-gray-700 hover:text-primary">+91 9360012972</a>
+                                    </div>
+                                    
+                                    <div class="flex items-center">
+                                        <div class="w-10 h-10 flex items-center justify-center bg-primary/10 text-primary rounded-full mr-3">
+                                            <i class="ri-mail-line"></i>
+                                        </div>
+                                        <a href="mailto:wildfellow54@gmail.com" class="text-gray-700 hover:text-primary">wildfellow54@gmail.com</a>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div>
+                                <h3 class="text-lg font-medium mb-4">Business Hours</h3>
+                                <div class="space-y-2">
+                                    <div class="flex justify-between">
+                                        <span class="text-gray-500">Monday - Friday:</span>
+                                        <span>9:00 AM - 6:00 PM</span>
+                                    </div>
+                                    <div class="flex justify-between">
+                                        <span class="text-gray-500">Saturday:</span>
+                                        <span>10:00 AM - 4:00 PM</span>
+                                    </div>
+                                    <div class="flex justify-between">
+                                        <span class="text-gray-500">Sunday:</span>
+                                        <span>Closed</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-          </div>
-          <div class="zoom-overlay" id="zoomOverlay">
-            <img
-              id="zoomedImage"
-              src=""
-              alt="Zoomed Watch Image"
-              class="zoomed-image"
-            />
-          </div>
         </div>
-
-        <!-- Product Details Section -->
-        <div class="md:w-1/2">
-          <div class="mb-6">
-            <h1 class="text-3xl font-bold text-gray-900 mb-2">
-              Chronograph Precision Series
-            </h1>
-            <p class="text-gray-500 mb-4">
-              Limited Edition Automatic Timepiece
-            </p>
-            <div class="flex items-center mb-4">
-              <div class="flex text-yellow-400">
-                <i class="ri-star-fill ri-sm"></i>
-                <i class="ri-star-fill ri-sm"></i>
-                <i class="ri-star-fill ri-sm"></i>
-                <i class="ri-star-fill ri-sm"></i>
-                <i class="ri-star-half-fill ri-sm"></i>
-              </div>
-              <span class="text-gray-500 ml-2">4.8 (124 reviews)</span>
-            </div>
-            <h2 class="text-4xl font-bold text-gray-900 mb-4">$1,299.00</h2>
-            <p class="text-sm text-gray-500 mb-6">
-              Free shipping worldwide • In stock • Ships within 24 hours
-            </p>
-          </div>
-
-          <div class="mb-6">
-            <h3 class="text-lg font-semibold mb-3">Case Color</h3>
-            <div class="flex space-x-4 mb-4">
-              <div
-                class="color-option selected"
-                style="background-color: #C0C0C0;"
-                data-color="Silver"
-              ></div>
-              <div
-                class="color-option"
-                style="background-color: #FFD700;"
-                data-color="Gold"
-              ></div>
-              <div
-                class="color-option"
-                style="background-color: #3D3D3D;"
-                data-color="Black"
-              ></div>
-              <div
-                class="color-option"
-                style="background-color: #B76E79;"
-                data-color="Rose Gold"
-              ></div>
-            </div>
-            <p class="text-gray-700" id="selectedColor">Selected: Silver</p>
-          </div>
-
-          <div class="mb-6">
-            <h3 class="text-lg font-semibold mb-3">Band Material</h3>
-            <div class="flex flex-wrap gap-3">
-              <label class="custom-radio flex items-center pl-7 relative">
-                <input type="radio" name="band" value="Leather" checked />
-                <span class="radio-mark"></span>
-                <span class="ml-2">Leather</span>
-              </label>
-              <label class="custom-radio flex items-center pl-7 relative">
-                <input type="radio" name="band" value="Stainless Steel" />
-                <span class="radio-mark"></span>
-                <span class="ml-2">Stainless Steel</span>
-              </label>
-              <label class="custom-radio flex items-center pl-7 relative">
-                <input type="radio" name="band" value="Silicone" />
-                <span class="radio-mark"></span>
-                <span class="ml-2">Silicone</span>
-              </label>
-            </div>
-          </div>
-
-          <div class="mb-6">
-            <h3 class="text-lg font-semibold mb-3">Quantity</h3>
-            <div
-              class="flex items-center border border-gray-300 rounded-button inline-flex"
-            >
-              <button
-                class="w-10 h-10 flex items-center justify-center text-gray-500 hover:text-primary"
-                id="decreaseQty"
-              >
-                <i class="ri-subtract-line ri-lg"></i>
-              </button>
-              <input
-                type="number"
-                value="1"
-                min="1"
-                class="w-12 text-center border-none focus:outline-none"
-                id="quantity"
-              />
-              <button
-                class="w-10 h-10 flex items-center justify-center text-gray-500 hover:text-primary"
-                id="increaseQty"
-              >
-                <i class="ri-add-line ri-lg"></i>
-              </button>
-            </div>
-          </div>
-          <div class="flex flex-col sm:flex-row gap-4 mb-8">
-            <button
-              class="bg-primary text-white py-3 px-8 rounded-button font-medium hover:bg-opacity-90 transition-all flex items-center justify-center whitespace-nowrap"
-            >
-              <i class="ri-shopping-cart-line mr-2"></i>
-              Add to Cart
-            </button>
-            <button
-              class="bg-white text-primary border border-primary py-3 px-8 rounded-button font-medium hover:bg-gray-50 transition-all flex items-center justify-center whitespace-nowrap"
-            >
-              <i class="ri-heart-line mr-2"></i>
-              Add to Wishlist
-            </button>
-          </div>
-
-          <div class="border-t border-gray-200 pt-6">
-            <div class="mb-4">
-              <button
-                class="flex items-center justify-between w-full text-left py-2 font-medium text-gray-900"
-                id="specBtn"
-              >
-                <span>Specifications</span>
-                <i class="ri-arrow-down-s-line ri-lg"></i>
-              </button>
-              <div class="pl-4 pt-2 pb-2 text-gray-700 hidden" id="specContent">
-                <div class="grid grid-cols-2 gap-y-2">
-                  <div class="text-gray-600">Movement</div>
-                  <div>Swiss Automatic</div>
-                  <div class="text-gray-600">Case Material</div>
-                  <div>316L Stainless Steel</div>
-                  <div class="text-gray-600">Case Diameter</div>
-                  <div>42mm</div>
-                  <div class="text-gray-600">Case Thickness</div>
-                  <div>11.5mm</div>
-                  <div class="text-gray-600">Water Resistance</div>
-                  <div>100m (10 ATM)</div>
-                  <div class="text-gray-600">Crystal</div>
-                  <div>Sapphire with Anti-Reflective Coating</div>
-                  <div class="text-gray-600">Power Reserve</div>
-                  <div>42 Hours</div>
-                  <div class="text-gray-600">Warranty</div>
-                  <div>2 Years International</div>
-                </div>
-              </div>
-            </div>
-            <div class="mb-4">
-              <button
-                class="flex items-center justify-between w-full text-left py-2 font-medium text-gray-900"
-                id="shippingBtn"
-              >
-                <span>Shipping & Returns</span>
-                <i class="ri-arrow-down-s-line ri-lg"></i>
-              </button>
-              <div
-                class="pl-4 pt-2 pb-2 text-gray-700 hidden"
-                id="shippingContent"
-              >
-                <p class="mb-2">
-                  Free worldwide shipping on all orders over $500.
-                </p>
-                <p class="mb-2">Delivery estimated within 3-7 business days.</p>
-                <p>
-                  30-day return policy for unworn items in original condition.
-                </p>
-              </div>
-            </div>
-            <div>
-              <button
-                class="flex items-center justify-between w-full text-left py-2 font-medium text-gray-900"
-                id="warrantyBtn"
-              >
-                <span>Warranty Information</span>
-                <i class="ri-arrow-down-s-line ri-lg"></i>
-              </button>
-              <div
-                class="pl-4 pt-2 pb-2 text-gray-700 hidden"
-                id="warrantyContent"
-              >
-                <p class="mb-2">
-                  All watches come with a 2-year international warranty covering
-                  manufacturing defects.
-                </p>
-                <p>Extended warranty options available at checkout.</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Contact Section -->
-      <section id="contact" class="mt-16 mb-8 bg-gray-50 rounded-lg p-8">
-        <div class="max-w-3xl mx-auto">
-          <h2 class="text-2xl font-bold text-center mb-8">Contact Us</h2>
-          <div class="flex flex-col md:flex-row gap-8">
-            <div class="md:w-1/2">
-              <form id="contactForm" class="space-y-4">
-                <div>
-                  <label for="name" class="block text-gray-700 mb-2"
-                    >Your Name</label
-                  >
-                  <input
-                    type="text"
-                    id="name"
-                    name="name"
-                    class="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
-                    required
-                  />
-                </div>
-                <div>
-                  <label for="email" class="block text-gray-700 mb-2"
-                    >Your Email</label
-                  >
-                  <input
-                    type="email"
-                    id="email"
-                    name="email"
-                    class="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
-                    required
-                  />
-                </div>
-                <div>
-                  <label for="subject" class="block text-gray-700 mb-2"
-                    >Subject</label
-                  >
-                  <input
-                    type="text"
-                    id="subject"
-                    name="subject"
-                    class="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
-                    required
-                  />
-                </div>
-                <div>
-                  <label for="message" class="block text-gray-700 mb-2"
-                    >Message</label
-                  >
-                  <textarea
-                    id="message"
-                    name="message"
-                    rows="4"
-                    class="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
-                    required
-                  ></textarea>
-                </div>
-                <div>
-                  <label
-                    class="custom-checkbox flex items-center pl-7 relative"
-                  >
-                    <input type="checkbox" />
-                    <span class="checkmark"></span>
-                    <span class="ml-2 text-sm text-gray-600"
-                      >I agree to the privacy policy</span
-                    >
-                  </label>
-                </div>
-                <button
-                  type="submit"
-                  class="bg-primary text-white py-2 px-6 rounded-button font-medium hover:bg-opacity-90 transition-all !rounded-button whitespace-nowrap"
-                >
-                  Send Message
-                </button>
-              </form>
-              <div
-                id="formSuccess"
-                class="mt-4 p-4 bg-green-100 text-green-700 rounded hidden"
-              >
-                Thank you! Your message has been sent successfully.
-              </div>
-              <div
-                id="formError"
-                class="mt-4 p-4 bg-red-100 text-red-700 rounded hidden"
-              >
-                Sorry, there was an error sending your message. Please try
-                again.
-              </div>
-            </div>
-            <div class="md:w-1/2 flex flex-col justify-center">
-              <div class="bg-white p-6 rounded-lg shadow-sm">
-                <h3 class="text-xl font-semibold mb-4">Direct Contact</h3>
-                <p class="text-gray-600 mb-6">
-                  Have questions about our products? Contact us directly
-                  through:
-                </p>
-                <div class="space-y-4">
-                  <div class="flex items-start">
-                    <div
-                      class="w-10 h-10 flex items-center justify-center bg-primary bg-opacity-10 rounded-full text-primary mr-4"
-                    >
-                      <i class="ri-phone-line ri-lg"></i>
-                    </div>
-                    <div>
-                      <h4 class="font-medium text-gray-900">Phone</h4>
-                      <a
-                        href="tel:9360012972"
-                        class="text-gray-600 hover:text-primary"
-                        >+91 9360012972</a
-                      >
-                    </div>
-                  </div>
-                  <div class="flex items-start">
-                    <div
-                      class="w-10 h-10 flex items-center justify-center bg-primary bg-opacity-10 rounded-full text-primary mr-4"
-                    >
-                      <i class="ri-mail-line ri-lg"></i>
-                    </div>
-                    <div>
-                      <h4 class="font-medium text-gray-900">Email</h4>
-                      <a
-                        href="mailto:wildfellow54@gmail.com"
-                        class="text-gray-600 hover:text-primary"
-                        >wildfellow54@gmail.com</a
-                      >
-                    </div>
-                  </div>
-                </div>
-                <div class="mt-8">
-                  <h4 class="font-medium text-gray-900 mb-3">Business Hours</h4>
-                  <p class="text-gray-600">
-                    Monday - Friday: 9:00 AM - 6:00 PM
-                  </p>
-                  <p class="text-gray-600">Saturday: 10:00 AM - 4:00 PM</p>
-                  <p class="text-gray-600">Sunday: Closed</p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
     </main>
-
-    <!-- Footer -->
-    <footer class="bg-gray-900 text-white py-12">
-      <div class="container mx-auto px-4">
-        <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
-          <div>
-            <h3 class="text-xl font-['Pacifico'] mb-4">logo</h3>
-            <p class="text-gray-400 mb-4">
-              Crafting exceptional timepieces since 1985. Each watch is a
-              testament to precision engineering and timeless design.
-            </p>
-            <div class="flex space-x-4">
-              <a
-                href="#"
-                class="w-8 h-8 flex items-center justify-center bg-gray-800 rounded-full hover:bg-primary transition-colors"
-              >
-                <i class="ri-facebook-fill"></i>
-              </a>
-              <a
-                href="#"
-                class="w-8 h-8 flex items-center justify-center bg-gray-800 rounded-full hover:bg-primary transition-colors"
-              >
-                <i class="ri-instagram-line"></i>
-              </a>
-              <a
-                href="#"
-                class="w-8 h-8 flex items-center justify-center bg-gray-800 rounded-full hover:bg-primary transition-colors"
-              >
-                <i class="ri-twitter-x-line"></i>
-              </a>
-              <a
-                href="#"
-                class="w-8 h-8 flex items-center justify-center bg-gray-800 rounded-full hover:bg-primary transition-colors"
-              >
-                <i class="ri-pinterest-line"></i>
-              </a>
+    
+    <footer class="bg-gray-900 text-white mt-20">
+        <div class="container mx-auto px-4 py-12">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div>
+                    <a href="#" class="text-2xl font-['Pacifico'] text-white mb-4 inline-block">logo</a>
+                    <p class="text-gray-400 mt-2">Crafting precision timepieces since 1985. Our watches combine traditional craftsmanship with modern technology.</p>
+                    <div class="flex space-x-4 mt-6">
+                        <a href="#" class="w-10 h-10 flex items-center justify-center bg-gray-800 rounded-full hover:bg-primary transition-colors">
+                            <i class="ri-facebook-fill"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 flex items-center justify-center bg-gray-800 rounded-full hover:bg-primary transition-colors">
+                            <i class="ri-instagram-line"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 flex items-center justify-center bg-gray-800 rounded-full hover:bg-primary transition-colors">
+                            <i class="ri-twitter-x-line"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 flex items-center justify-center bg-gray-800 rounded-full hover:bg-primary transition-colors">
+                            <i class="ri-youtube-line"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div>
+                    <h3 class="text-lg font-medium mb-4">Quick Links</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Home</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">About Us</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Collections</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">New Arrivals</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="text-lg font-medium mb-4">Customer Service</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">FAQ</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Shipping & Returns</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Warranty Information</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Track Your Order</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Privacy Policy</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="text-lg font-medium mb-4">Newsletter</h3>
+                    <p class="text-gray-400 mb-4">Subscribe to receive updates, access to exclusive deals, and more.</p>
+                    <form class="flex">
+                        <input type="email" placeholder="Your email address" class="flex-1 px-4 py-2 bg-gray-800 border-none rounded-l outline-none text-white">
+                        <button type="submit" class="px-4 py-2 bg-primary text-white rounded-r hover:bg-blue-600 transition-colors whitespace-nowrap !rounded-button">Subscribe</button>
+                    </form>
+                    <div class="mt-6">
+                        <h4 class="text-sm font-medium mb-3">We Accept</h4>
+                        <div class="flex space-x-3">
+                            <div class="w-10 h-6 flex items-center justify-center bg-white rounded">
+                                <i class="ri-visa-fill text-blue-800 ri-lg"></i>
+                            </div>
+                            <div class="w-10 h-6 flex items-center justify-center bg-white rounded">
+                                <i class="ri-mastercard-fill text-red-500 ri-lg"></i>
+                            </div>
+                            <div class="w-10 h-6 flex items-center justify-center bg-white rounded">
+                                <i class="ri-paypal-fill text-blue-600 ri-lg"></i>
+                            </div>
+                            <div class="w-10 h-6 flex items-center justify-center bg-white rounded">
+                                <i class="ri-apple-fill text-gray-800 ri-lg"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-          </div>
-          <div>
-            <h4 class="text-lg font-semibold mb-4">Shop</h4>
-            <ul class="space-y-2">
-              <li>
-                <a href="#" class="text-gray-400 hover:text-white"
-                  >Men's Watches</a
-                >
-              </li>
-              <li>
-                <a href="#" class="text-gray-400 hover:text-white"
-                  >Women's Watches</a
-                >
-              </li>
-              <li>
-                <a href="#" class="text-gray-400 hover:text-white"
-                  >Limited Editions</a
-                >
-              </li>
-              <li>
-                <a href="#" class="text-gray-400 hover:text-white"
-                  >New Arrivals</a
-                >
-              </li>
-              <li>
-                <a href="#" class="text-gray-400 hover:text-white"
-                  >Special Offers</a
-                >
-              </li>
-            </ul>
-          </div>
-          <div>
-            <h4 class="text-lg font-semibold mb-4">Support</h4>
-            <ul class="space-y-2">
-              <li>
-                <a href="#" class="text-gray-400 hover:text-white"
-                  >Contact Us</a
-                >
-              </li>
-              <li>
-                <a href="#" class="text-gray-400 hover:text-white">FAQs</a>
-              </li>
-              <li>
-                <a href="#" class="text-gray-400 hover:text-white"
-                  >Shipping & Returns</a
-                >
-              </li>
-              <li>
-                <a href="#" class="text-gray-400 hover:text-white"
-                  >Warranty Information</a
-                >
-              </li>
-              <li>
-                <a href="#" class="text-gray-400 hover:text-white"
-                  >Watch Care</a
-                >
-              </li>
-            </ul>
-          </div>
-          <div>
-            <h4 class="text-lg font-semibold mb-4">Newsletter</h4>
-            <p class="text-gray-400 mb-4">
-              Subscribe to receive updates, access to exclusive deals, and more.
-            </p>
-            <form class="flex mb-4">
-              <input
-                type="email"
-                placeholder="Your email address"
-                class="bg-gray-800 text-white px-4 py-2 rounded-l-button w-full border-none focus:outline-none focus:ring-1 focus:ring-primary"
-              />
-              <button
-                type="submit"
-                class="bg-primary text-white px-4 py-2 rounded-r-button whitespace-nowrap"
-              >
-                Subscribe
-              </button>
-            </form>
-            <div class="flex space-x-3">
-              <i class="ri-visa-line ri-lg"></i>
-              <i class="ri-mastercard-line ri-lg"></i>
-              <i class="ri-paypal-line ri-lg"></i>
-              <i class="ri-amazon-pay-line ri-lg"></i>
-              <i class="ri-apple-pay-line ri-lg"></i>
+            
+            <div class="border-t border-gray-800 mt-12 pt-8 text-center text-gray-400 text-sm">
+                <p>&copy; 2025 Luxury Timepieces. All rights reserved.</p>
             </div>
-          </div>
         </div>
-        <div
-          class="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400 text-sm"
-        >
-          <p>&copy; 2025 Luxury Timepieces. All rights reserved.</p>
-        </div>
-      </div>
     </footer>
 
     <script>
-      document.addEventListener("DOMContentLoaded", function () {
-        // Quantity controls
-        const quantityInput = document.getElementById("quantity");
-        const decreaseBtn = document.getElementById("decreaseQty");
-        const increaseBtn = document.getElementById("increaseQty");
-
-        decreaseBtn.addEventListener("click", function () {
-          const currentValue = parseInt(quantityInput.value);
-          if (currentValue > 1) {
-            quantityInput.value = currentValue - 1;
-          }
+        document.addEventListener('DOMContentLoaded', function() {
+            // Image slider functionality
+            const thumbnails = document.querySelectorAll('.image-slider > div');
+            const mainImage = document.getElementById('main-image');
+            
+            thumbnails.forEach(thumbnail => {
+                thumbnail.addEventListener('click', function() {
+                    // Remove border from all thumbnails
+                    thumbnails.forEach(t => t.classList.remove('border-primary'));
+                    t.classList.add('border-transparent');
+                    
+                    // Add border to clicked thumbnail
+                    thumbnail.classList.add('border-primary');
+                    thumbnail.classList.remove('border-transparent');
+                    
+                    // Update main image
+                    const imgSrc = thumbnail.querySelector('img').src;
+                    mainImage.src = imgSrc.replace(/width=200&height=200/, 'width=800&height=800');
+                });
+            });
         });
 
-        increaseBtn.addEventListener("click", function () {
-          const currentValue = parseInt(quantityInput.value);
-          quantityInput.value = currentValue + 1;
+        document.addEventListener('DOMContentLoaded', function() {
+            // Quantity selector functionality
+            const quantityInput = document.querySelector('input[type="number"]');
+            const decrementBtn = quantityInput.previousElementSibling;
+            const incrementBtn = quantityInput.nextElementSibling;
+            
+            decrementBtn.addEventListener('click', function() {
+                if (quantityInput.value > 1) {
+                    quantityInput.value = parseInt(quantityInput.value) - 1;
+                }
+            });
+            
+            incrementBtn.addEventListener('click', function() {
+                quantityInput.value = parseInt(quantityInput.value) + 1;
+            });
         });
 
-        // Color selection
-        const colorOptions = document.querySelectorAll(".color-option");
-        const selectedColorText = document.getElementById("selectedColor");
-
-        colorOptions.forEach((option) => {
-          option.addEventListener("click", function () {
-            colorOptions.forEach((opt) => opt.classList.remove("selected"));
-            this.classList.add("selected");
-            selectedColorText.textContent =
-              "Selected: " + this.getAttribute("data-color");
-          });
+        document.addEventListener('DOMContentLoaded', function() {
+            // Contact form submission
+            const contactForm = document.getElementById('contact-form');
+            const successMessage = document.getElementById('success-message');
+            
+            contactForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                // Simulate form submission
+                setTimeout(() => {
+                    contactForm.reset();
+                    successMessage.classList.remove('hidden');
+                    
+                    setTimeout(() => {
+                        successMessage.classList.add('hidden');
+                    }, 5000);
+                }, 1000);
+            });
         });
-        // Accordion functionality
-        const accordionButtons = [
-          {
-            btn: document.getElementById("specBtn"),
-            content: document.getElementById("specContent"),
-          },
-          {
-            btn: document.getElementById("shippingBtn"),
-            content: document.getElementById("shippingContent"),
-          },
-          {
-            btn: document.getElementById("warrantyBtn"),
-            content: document.getElementById("warrantyContent"),
-          },
-        ];
-
-        accordionButtons.forEach((item) => {
-          item.btn.addEventListener("click", function () {
-            const isHidden = item.content.classList.contains("hidden");
-            item.content.classList.toggle("hidden");
-
-            // Update icon
-            const icon = this.querySelector("i");
-            if (isHidden) {
-              icon.classList.remove("ri-arrow-down-s-line");
-              icon.classList.add("ri-arrow-up-s-line");
-            } else {
-              icon.classList.remove("ri-arrow-up-s-line");
-              icon.classList.add("ri-arrow-down-s-line");
-            }
-          });
-        });
-
-        // Image gallery
-        const mainImage = document.getElementById("mainImage");
-        const thumbnails = document.querySelectorAll(".thumbnail");
-        const zoomOverlay = document.getElementById("zoomOverlay");
-        const zoomedImage = document.getElementById("zoomedImage");
-
-        thumbnails.forEach((thumb) => {
-          thumb.addEventListener("click", function () {
-            thumbnails.forEach((t) => t.classList.remove("active"));
-            this.classList.add("active");
-
-            const imgSrc = this.querySelector("img").src;
-            // Replace thumbnail size with full size in URL
-            const fullSizeSrc = imgSrc.replace(
-              "width=100&height=100",
-              "width=800&height=800",
-            );
-            mainImage.src = fullSizeSrc;
-            zoomedImage.src = fullSizeSrc;
-          });
-        });
-
-        mainImage.addEventListener("click", function () {
-          zoomOverlay.style.display = "flex";
-        });
-
-        zoomOverlay.addEventListener("click", function () {
-          zoomOverlay.style.display = "none";
-        });
-
-        // Contact form submission
-        const contactForm = document.getElementById("contactForm");
-        const formSuccess = document.getElementById("formSuccess");
-        const formError = document.getElementById("formError");
-        contactForm.addEventListener("submit", function (e) {
-          e.preventDefault();
-
-          // Simple form validation
-          const name = document.getElementById("name").value;
-          const email = document.getElementById("email").value;
-          const subject = document.getElementById("subject").value;
-          const message = document.getElementById("message").value;
-
-          if (name && email && subject && message) {
-            // Show success message (in a real app, you'd send the form data to a server)
-            formSuccess.classList.remove("hidden");
-            formError.classList.add("hidden");
-            contactForm.reset();
-
-            // Hide success message after 5 seconds
-            setTimeout(() => {
-              formSuccess.classList.add("hidden");
-            }, 5000);
-          } else {
-            // Show error message
-            formError.classList.remove("hidden");
-            formSuccess.classList.add("hidden");
-          }
-        });
-      });
     </script>
-  </body>
+</body>
 </html>
